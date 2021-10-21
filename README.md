@@ -1,6 +1,6 @@
-# FFC Grants Productivity Eligibility
+# FFC Grants adding value Eligibility
 
-FFC Grants productivity eligibility and desirability microservice - this service interconnect scoring, notification, file creation services.
+FFC Grants adding value eligibility and desirability microservice - this service interconnect scoring, notification, file creation services.
 
 ## Prerequisites
 

@@ -67,7 +67,7 @@ function generateExcelFilename (scheme, projectName, businessName, referenceNumb
 function getSpreadsheetDetails (submission, desirabilityScore) {
   const today = new Date()
   const todayStr = today.toLocaleDateString('en-GB')
-  const schemeName = submission.projectSubject === 'Slurry acidification' ? 'Slurry' : 'Robotics'
+  const schemeName = 'Adding Value'
   const subScheme = `FTF-${schemeName}`
 
   return {
@@ -78,7 +78,7 @@ function getSpreadsheetDetails (submission, desirabilityScore) {
       submission.confirmationId.trim(),
       today
     ),
-    uploadLocation: `Farming Investment Fund/Farming Transformation Fund/${spreadsheetConfig.uploadEnvironment}/Productivity/${schemeName}/`,
+    uploadLocation: `Farming Investment Fund/Farming Transformation Fund/${spreadsheetConfig.uploadEnvironment}/Adding Value/`,
     worksheets: [
       {
         title: 'DORA DATA',
@@ -179,8 +179,6 @@ function getEmailDetails (submission, desirabilityScore, rpaEmail, isAgentEmail 
       overallRating: desirabilityScore.desirability.overallRating.band,
       scoreChance: getScoreChance(desirabilityScore.desirability.overallRating.band),
       projectSubject: submission.projectSubject,
-      isSlurry: submission.projectSubject === 'Slurry acidification' ? 'Yes' : 'No',
-      isRobotics: submission.projectSubject === 'Robotics and innovation' ? 'Yes' : 'No',
       legalStatus: submission.legalStatus,
       location: `England ${submission.projectPostcode}`,
       planningPermission: submission.planningPermission,
@@ -189,26 +187,9 @@ function getEmailDetails (submission, desirabilityScore, rpaEmail, isAgentEmail 
       isTenancyLength: submission.tenancyLength ? 'Yes' : 'No',
       tenancyLength: submission.tenancyLength ?? ' ',
       projectItems: submission.projectItems ? [submission.projectItems].flat().join(', ') : '',
-      acidificationInfrastructure: submission.acidificationInfrastructure ?? ' ',
-      slurryApplication: submission.slurryApplication ?? ' ',
       projectCost: getCurrencyFormat(submission.projectCost),
       potentialFunding: getCurrencyFormat(submission.calculatedGrant),
       remainingCost: getCurrencyFormat(submission.remainingCost),
-      sssi: submission.sSSI ?? ' ',
-      slurryCurrentlyTreated: submission.slurryCurrentlyTreated ?? ' ',
-      slurryToBeTreated: submission.slurryToBeTreated ?? ' ',
-      projectImpacts: submission.projectImpacts ?? ' ',
-      projectImpact: submission.projectImpact ?? ' ',
-      isDataAnalytics: submission.dataAnalytics ? 'Yes' : 'No',
-      dataAnalytics: submission.dataAnalytics ?? ' ',
-      dataAnalyticsScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'robotics-data-analytics') : ' ',
-      energySource: submission.energySource ? [submission.energySource].flat().join(', ') : ' ',
-      energySourceScore: submission.projectSubject === 'Robotics and innovation' ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'robotics-energy-source') : ' ',
-      agriculturalSector: submission.agriculturalSector ? [submission.agriculturalSector].flat().join(', ') : ' ',
-      agriculturalSectorScore: submission.projectSubject === 'Robotics and innovation' ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'robotics-agricultural-sector') : ' ',
-      isTechnology: submission.technology ? 'Yes' : 'No',
-      technology: submission.technology ?? ' ',
-      technologyScore: submission.projectSubject === 'Robotics and innovation' ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'robotics-technology') : ' ',
       projectName: submission.businessDetails.projectName,
       businessName: submission.businessDetails.businessName,
       farmerName: submission.farmerDetails.firstName,
@@ -218,9 +199,26 @@ function getEmailDetails (submission, desirabilityScore, rpaEmail, isAgentEmail 
       agentName: submission.agentsDetails?.firstName ?? ' ',
       agentSurname: submission.agentsDetails?.lastName ?? ' ',
       agentEmail: submission.agentsDetails?.emailAddress ?? ' ',
-      projectImpactsScore: submission.projectSubject === 'Slurry acidification' ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'project-impacts') : ' ',
       contactConsent: submission.consentOptional ? 'Yes' : 'No',
-      scoreDate: new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
+      scoreDate: new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }),
+      productsProcessed: submission.productsProcessed ?? ' ',
+      productsProcessedScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'products-processed') : ' ',
+      howAddingValue: submission.howAddingValue ?? ' ',
+      howAddingValueScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'how-adding-value') : ' ',
+      projectImpact: submission.projectImpact ?? ' ',
+      projectImpactScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'project-impact') : ' ',
+      currentCustomers: submission.currentCustomers ? submission.currentCustomers.flat().join(', ') : ' ',
+      currentCustomersScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'current-customers') : ' ',
+      futureCustomers: submission.futureCustomers ? submission.futureCustomers.flat().join(', ') : ' ',
+      futureCustomersScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'future-customers') : ' ',
+      collaboration: submission.collaboration ?? ' ',
+      collaborationScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'collaboration') : ' ',
+      productsComingFrom: submission.productsComingFrom ?? ' ',
+      productsComingFromScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'products-coming-from') : ' ',
+      processedSold: submission.processedSold ?? ' ',
+      processedSoldScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'processed-sold') : ' ',
+      environmentalImpact: submission.environmentalImpact ? submission.environmentalImpact.flat().join(', ') : ' ',
+      environmentalImpactScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'environmental-impact') : ' '
 
     }
   }

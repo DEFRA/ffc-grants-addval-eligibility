@@ -1,106 +1,104 @@
-{
-  "projectItems": [
+{  
+  "productsProcessed": [
     {
-      "key": "project-items",
-      "title": "What type of primary products are being processed?                                                                    ",
-      "answers": {
-            "project-items-A1": "Arable crops – Cereals/Legumes/Oilseeds",
-            "project-items-A2": "Horticultural crops – Vegetables/Fruits & Nuts/Edible Flowers",
-            "project-items-A3": "Dairy or Meat produce",
-            "project-items-A4": "Forestry products",
-            "project-items-A5": "Fodder crops",
-            "project-items-A6": "Non-edible flowers",
-            "project-items-A7": "Fibre products"
-      }
+    "key": "products-processed",
+    "title": "What type of products are being processed?",  
+    "answers": {
+      "products-processed-A1": "Arable crops",
+      "products-processed-A2": "Horticultural crops",
+      "products-processed-A3": "Dairy or meat produce",
+      "products-processed-A4": "Forestry products",
+      "products-processed-A5": "Fodder crops",
+      "products-processed-A6": "Non-edible crops",
+      "products-processed-A7": "Fibre products"    
     }
+  }
   ],
-  "resultProducts": [
-    {
-      "key": "result-products",
-      "title": "What products will you produce as a result of the project?",
-      "answers": {
-        "result-products-A1" : "primary product that are kept in controlled atmosphere storage for longer so that they can be sold at a higher price",
-        "result-products-A2" : "primary product that are kept in dynamic controlled atmosphere storage, so that they can be sold at a higher price",
-        "result-products-A3" : "Primary product(s) that is prepared so that it can be sold at a higher price i.e washed veg/top and tail.",
-        "result-products-A4" : "primary product(s) that is graded so that it can be sold at a higher price",
-        "result-products-A5" : "primary product(s) that is packaged so that it can be sold at a higher price",
-        "result-products-A6" : "A new product(s) from the primary product(s) that you grow so that it can be sold at a higher price"
-      }
+  "howAddingValue": [{
+    "key":"how-adding-value",
+    "title":"How will you add value to the products?",  
+    "answers": {
+      "how-adding-value-A1": "Processing or preparing primary product",
+      "how-adding-value-A2": "Grading or sorting primary product",
+      "how-adding-value-A3": "Packing primary product",
+      "how-adding-value-A4": "Dynamic controlled-atmosphere storage"
     }
-  ],
+  }],
   "projectImpact": [{
     "key": "project-impact",
     "title": "What impact will the project have?",
     "answers":
     {
-      "project-impact-A1": "Enables creation of new added-value products for the applicant business",
-      "project-impact-A2": "Increases volume of existing added-value products for the applicant business"
+      "project-impact-A1": "Diversifying into creating added-value products",
+      "project-impact-A2": "Increase volume or range of added-value products"
     }}
   ],
-  "businessImpact": [
+  "currentCustomers": [{
+    "key": "current-customers",
+    "title": "Who are your current customers?",
+    "answers":
     {
-      "key": "business-impact",
-      "title": "What growth impact will the project have on your business?",
-      "answers": {
-        "business-impact-A1": "Increased productivity",
-        "business-impact-A2": "Increased profits",
-        "business-impact-A3": "Increased jobs",
-        "business-impact-A4": "Introduces innovative equipment or processes new to the business",
-        "business-impact-A5": "Introduces added-value processing as entirely new business activity"
-    } 
-    }
+      "current-customers-A1": "Processors",
+      "current-customers-A2": "Wholesalers",
+      "current-customers-A3": "Retailers",
+      "current-customers-A4": "Selling direct to consumers"
+    }}
   ],
-  "marketImpacts": [
+  "futureCustomers": [{
+    "key": "future-customers",
+    "title": "Who will your customers be after the project?",
+    "answers":
     {
-      "key": "market-impacts",
-      "title": "What impact will the project have on your markets?",
-      "answers": {
-        "market-impacts-A1": "Expands existing routes to market",
-        "market-impacts-A2": "Opens new Wholesale routes to market",
-        "market-impacts-A3": "Opens new Retail routes to market",
-        "market-impacts-A4": "Introduces exporting",
-        "market-impacts-A5": "Increases exports"
-      }
-    }
+      "future-customers-A1": "Processors",
+      "future-customers-A2": "Wholesalers",
+      "future-customers-A3": "Retailers",
+      "future-customers-A4": "Selling direct to consumers"
+    }}
   ],
-  "supplyChainImpacts": [
+  "collaboration": [{
+    "key": "collaboration",
+    "title": "Will you buy materials from other farmers?",
+    "answers":
     {
-      "key": "supply-chain-impacts",
-      "title": "What impact will the project have on supply chain businesses?",
-      "answers": {
-        "supply-chain-impacts-A1": "Produces quantifiable benefits to other named producers",
-        "supply-chain-impacts-A2": "Enables new collaborations or formal partnerships",
-        "supply-chain-impacts-A3": "Benefits existing  collaborations or formal partnerships",
-        "supply-chain-impacts-A4": "Shortens Supply chain (reduced miles)" ,
-        "supply-chain-impacts-A5": "Increases local supply chain resilience" ,
-        "supply-chain-impacts-A6": "Reduces imports (substitution)"
-      }
-    }
+      "collaboration-A1": "Yes",
+      "collaboration-A2": "No"
+    }}
   ],
-  "foodMileImpacts": [
+  "productsComingFrom": [{
+    "key": "products-coming-from",
+    "title": "Where are the primary products coming from?",
+    "answers":
     {
-      "key": "food-mile-impacts",
-      "title": "What impact will the project have on ‘food miles’?",
-      "answers": {
-        "food-mile-impacts-A1": "At Point of Origin - at growers/producers location",
-        "food-mile-impacts-A2": "Locally – within 10 miles of origin",
-        "food-mile-impacts-A3": "Regionally – within 50 miles of origin",
-        "food-mile-impacts-A4": "Nationally – within the UK" ,
-        "food-mile-impacts-A5": "Internationally – outside the UK" 
-      }
-    }
+      "products-coming-from-A1": "Processing point",
+      "products-coming-from-A2": "Within 10 miles",
+      "products-coming-from-A3": "Within 50 miles",
+      "products-coming-from-A4": "More than 50 miles",
+      "products-coming-from-A5": "Outside the UK"
+    }}
   ],
-  "environmentImpacts": [
+  "processedSold": [{
+    "key": "processed-sold",
+    "title": "Where are the processed products being sold?",
+    "answers":
     {
-      "key": "environment-impacts",
-      "title": "What impact will the project have on the environment?",
-      "answers": {
-        "environment-impacts-A1": "Energy efficiency improvements",
-        "environment-impacts-A2": "Water efficiency improvements",
-        "environment-impacts-A3": "Wastage efficiency improvements",
-        "environment-impacts-A4": "Reduces single use plastics" ,
-        "environment-impacts-A5": "Internationally – outside the UK" 
-      }
-    }
+      "processed-sold-A1": "Processing point",
+      "processed-sold-A2": "Within 10 miles",
+      "processed-sold-A3": "Within 50 miles",
+      "processed-sold-A4": "More than 50 miles",
+      "processed-sold-A5": "Outside the UK"
+    }}
+  ],
+  "environmentalImpact": [{
+    "key": "environmental-impact",
+    "title": "How will the project improve the environment?",
+    "answers":
+    {
+      "environmental-impact-A1": "Energy efficiency",
+      "environmental-impact-A2": "Water efficiency",
+      "environmental-impact-A3": "Waste efficiency",
+      "environmental-impact-A4": "Reduce single-use plastics",
+      "environmental-impact-A5": "Reduce harmful emissions or pollutants",
+      "environmental-impact-A6": "My project will not improve the environment"
+    }}
   ]
 }

@@ -17,11 +17,12 @@
   "howAddingValue": [{
     "key":"how-adding-value",
     "title":"How will you add value to the products?",  
-    "answers": {
-      "how-adding-value-A1": "Processing or preparing primary product",
+    "answers": {   
+      "how-adding-value-A1": "Slaughtering, processing or preparing primary product",
       "how-adding-value-A2": "Grading or sorting primary product",
-      "how-adding-value-A3": "Packing primary product",
-      "how-adding-value-A4": "Dynamic controlled-atmosphere storage"
+      "how-adding-value-A3": "Processing or preparing primary product",
+      "how-adding-value-A4": "Controlled atmosphere or dynamic controlled atmosphere storage",
+      "how-adding-value-A5": "New retail facility to sell direct to consumers"
     }
   }],
   "projectImpact": [{
@@ -29,19 +30,10 @@
     "title": "What impact will the project have?",
     "answers":
     {
-      "project-impact-A1": "Diversifying into creating added-value products",
-      "project-impact-A2": "Increase volume or range of added-value products"
-    }}
-  ],
-  "currentCustomers": [{
-    "key": "current-customers",
-    "title": "Who are your current customers?",
-    "answers":
-    {
-      "current-customers-A1": "Processors",
-      "current-customers-A2": "Wholesalers",
-      "current-customers-A3": "Retailers",
-      "current-customers-A4": "Selling direct to consumers"
+      "project-impact-A1": "Creating added-value products for the first time",
+      "project-impact-A2": "Increasing volume of added-value products",
+      "project-impact-A3": "Increasing range of added-value products",
+      "project-impact-A4": "Allow selling direct to consumer ( i.e. retail and dis)"
     }}
   ],
   "futureCustomers": [{

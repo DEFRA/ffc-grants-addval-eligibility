@@ -63,7 +63,16 @@ function generateExcelFilename (scheme, projectName, businessName, referenceNumb
   }).format(today).replace(/\//g, '-')
   return `${scheme}_${projectName}_${businessName}_${referenceNumber}_${dateTime}.xlsx`
 }
-
+function getBusinessTypeC53 (businessType) {
+  switch (businessType.toLowerCase()) {
+    case 'a grower or producer of agricultural, horticultural or forestry agri-products (a primary producer)':
+      return 'Producer'
+    case 'providing processing services to a primary producer':
+      return 'Contractor'
+    default:
+      return 'Producer'
+  }
+}
 function getSpreadsheetDetails (submission, desirabilityScore) {
   const today = new Date()
   const todayStr = today.toLocaleDateString('en-GB')
@@ -90,8 +99,8 @@ function getSpreadsheetDetails (submission, desirabilityScore) {
           generateRow(2, 'FA or OA', 'Outline Application'),
           generateRow(40, 'Scheme', 'Farming Transformation Fund'),
           generateRow(39, 'Sub scheme', subScheme),
-          generateRow(43, 'Theme', submission.projectSubject),
-          generateRow(90, 'Project type', submission.projectSubject),
+          generateRow(43, 'Theme', 'Adding Value'),
+          generateRow(90, 'Project type', 'Adding Value'),
           generateRow(41, 'Owner', 'RD'),
           generateRow(341, 'Grant Launch Date', ''),
           generateRow(23, 'Status of applicant', submission.legalStatus),
@@ -99,20 +108,23 @@ function getSpreadsheetDetails (submission, desirabilityScore) {
           generateRow(376, 'Project Started', submission.projectStart),
           generateRow(342, 'Land owned by Farm', submission.tenancy),
           generateRow(343, 'Tenancy for next 5 years', submission.tenancyLength ?? ''),
+          generateRow(53, 'Business type', getBusinessTypeC53(submission.businessType)),
           generateRow(55, 'Total project expenditure', String(submission.projectCost)),
           generateRow(57, 'Grant rate', '40'),
           generateRow(56, 'Grant amount requested', submission.calculatedGrant),
           generateRow(345, 'Remaining Cost to Farmer', submission.remainingCost),
           generateRow(346, 'Planning Permission Status', submission.planningPermission),
-          generateRow(377, 'Low emission application equipment', submission.slurryApplication ?? ''),
-          generateRow(382, 'First Adoption', submission.projectImpacts ?? ''),
-          generateRow(383, 'Current Slurry Acidify Volume', submission.slurryCurrentlyTreated ?? ''),
-          generateRow(384, 'Future Slurry Acidify Volume', submission.slurryToBeTreated ?? ''),
+          generateRow(386, 'Products To Be Processed', submission.productsProcessed ?? ''),
+          generateRow(387, 'How add value to products', submission.howAddingValue ?? ''),
+          generateRow(388, 'AV Project Impact', submission.projectImpact ?? ''),
+          generateRow(389, 'AV Target Customers', submission.futureCustomers ?? ''),
+          generateRow(390, 'AV Farmer Collaborate', submission.collaboration ?? ''),
+          generateRow(391, 'AV Product Sourcing Location', submission.productsComingFrom ?? ''),
+          generateRow(392, 'AV Product Sell Location', submission.processedSold ?? ''),
+          generateRow(393, 'AV Improve Environment', submission.env ?? ''),
           generateRow(378, 'Data Analytics', submission.dataAnalytics ?? ''),
-          generateRow(379, 'Energy Type', [submission.energySource].flat().join('|') ?? ''),
-          generateRow(380, 'Agricultural Sector for Grant Item', [submission.agriculturalSector].flat().join('|') ?? ''),
           generateRow(381, 'Currently using Grant Item', submission.technology ?? ''),
-          // generateRow(354, 'Irrigation Hectare Score', getQuestionScoreBand(desirabilityScore.desirability.questions, 'projectImpact')),
+          generateRow(394, 'AV Business Type', submission.businessType ?? ''),
           generateRow(49, 'Site of Special Scientific Interest (SSSI)', submission.sSSI ?? ''),
           generateRow(365, 'OA score', desirabilityScore.desirability.overallRating.band),
           generateRow(366, 'Date of OA decision', ''),
@@ -122,7 +134,6 @@ function getSpreadsheetDetails (submission, desirabilityScore) {
           generateRow(367, 'Annual Turnover', submission.businessDetails.businessTurnover),
           generateRow(22, 'Employees', submission.businessDetails.numberEmployees),
           generateRow(20, 'Business size', calculateBusinessSize(submission.businessDetails.numberEmployees, submission.businessDetails.businessTurnover)),
-          generateRow(44, 'Project Items', getProjectItems(submission.projectItems, submission.acidificationInfrastructure, submission.roboticEquipment)),
           generateRow(91, 'Are you an AGENT applying on behalf of your customer', submission.applying === 'Agent' ? 'Yes' : 'No'),
           generateRow(5, 'Surname', submission.farmerDetails.lastName),
           generateRow(6, 'Forename', submission.farmerDetails.firstName),
@@ -180,7 +191,8 @@ function getEmailDetails (submission, desirabilityScore, rpaEmail, isAgentEmail 
       scoreChance: getScoreChance(desirabilityScore.desirability.overallRating.band),
       projectSubject: submission.projectSubject,
       legalStatus: submission.legalStatus,
-      location: `England ${submission.projectPostcode}`,
+      projectPostcode: submission.projectPostcode,
+      location: submission.businessLocation,
       planningPermission: submission.planningPermission,
       projectStart: submission.projectStart,
       tenancy: submission.tenancy,
@@ -202,24 +214,22 @@ function getEmailDetails (submission, desirabilityScore, rpaEmail, isAgentEmail 
       contactConsent: submission.consentOptional ? 'Yes' : 'No',
       scoreDate: new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }),
       productsProcessed: submission.productsProcessed ?? ' ',
-      productsProcessedScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'products-processed') : ' ',
+      productsProcessedScore: submission.productsProcessed ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'products-processed') : ' ',
       howAddingValue: submission.howAddingValue ?? ' ',
-      howAddingValueScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'how-adding-value') : ' ',
+      howAddingValueScore: submission.howAddingValue ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'how-adding-value') : ' ',
       projectImpact: submission.projectImpact ?? ' ',
-      projectImpactScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'project-impact') : ' ',
-      currentCustomers: submission.currentCustomers ? submission.currentCustomers.flat().join(', ') : ' ',
-      currentCustomersScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'current-customers') : ' ',
+      projectImpactScore: submission.projectImpact ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'project-impact') : ' ',
       futureCustomers: submission.futureCustomers ? submission.futureCustomers.flat().join(', ') : ' ',
-      futureCustomersScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'future-customers') : ' ',
+      futureCustomersScore: submission.futureCustomers ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'future-customers') : ' ',
       collaboration: submission.collaboration ?? ' ',
-      collaborationScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'collaboration') : ' ',
+      collaborationScore: submission.collaboration ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'collaboration') : ' ',
       productsComingFrom: submission.productsComingFrom ?? ' ',
-      productsComingFromScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'products-coming-from') : ' ',
+      productsComingFromScore: submission.productsComingFrom ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'products-coming-from') : ' ',
       processedSold: submission.processedSold ?? ' ',
-      processedSoldScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'processed-sold') : ' ',
+      processedSoldScore: submission.processedSold ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'processed-sold') : ' ',
       environmentalImpact: submission.environmentalImpact ? submission.environmentalImpact.flat().join(', ') : ' ',
-      environmentalImpactScore: submission.dataAnalytics ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'environmental-impact') : ' '
-
+      environmentalImpactScore: submission.environmentalImpact ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'environmental-impact') : ' ',
+      businessType: submission.applicantBusiness
     }
   }
 }

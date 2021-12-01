@@ -8,8 +8,8 @@
       "products-processed-A2": "Horticultural products",
       "products-processed-A3": "Dairy or meat products",
       "products-processed-A4": "Forestry products",
-      "products-processed-A5": "Fodder crops",
-      "products-processed-A6": "Non-edible crops",
+      "products-processed-A5": "Fodder products",
+      "products-processed-A6": "Non-edible products",
       "products-processed-A7": "Fibre products"    
     }
   }
@@ -20,7 +20,7 @@
     "answers": {   
       "how-adding-value-A1": "Slaughtering, processing or preparing primary product",
       "how-adding-value-A2": "Grading or sorting primary product",
-      "how-adding-value-A3": "Processing or preparing primary product",
+      "how-adding-value-A3": "Packing primary product",
       "how-adding-value-A4": "Controlled atmosphere or dynamic controlled atmosphere storage",
       "how-adding-value-A5": "New retail facility to sell direct to consumers"
     }
@@ -91,8 +91,9 @@
       "environmental-impact-A2": "Energy efficiency",
       "environmental-impact-A3": "Water efficiency",
       "environmental-impact-A4": "Waste efficiency",
-      "environmental-impact-A5": "Reduce harmful emissions or pollutants",
-      "environmental-impact-A6": "My project will not improve the environment"
+      "environmental-impact-A5": "Remove single-use plastics",
+      "environmental-impact-A6": "Reduce harmful emissions or pollutants",
+      "environmental-impact-A7": "My project will not improve the environment"
     }}
   ]
 }

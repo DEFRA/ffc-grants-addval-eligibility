@@ -2,7 +2,9 @@ const emailConfig = require('../config/email')
 const spreadsheetConfig = require('../config/spreadsheet')
 
 function getQuestionScoreBand (questions, questionKey) {
-  return questions.find(question => question.key === questionKey).rating.band
+  return questions.filter(question => question.key === questionKey).length > 0
+    ? questions.find(question => question.key === questionKey).rating.band
+    : ''
 }
 
 function generateRow (rowNumber, name, value, bold = false) {
@@ -11,16 +13,6 @@ function generateRow (rowNumber, name, value, bold = false) {
     values: ['', name, value],
     bold
   }
-}
-
-function getProjectItems (projectItems, infrastructure, roboticEquipment) {
-  projectItems = [projectItems].flat()
-  if (infrastructure === 'acidification infrastructure') {
-    projectItems.push(infrastructure)
-  } else if (roboticEquipment) {
-    projectItems.push(roboticEquipment)
-  }
-  return projectItems.join('|').substring(0, 60)
 }
 
 function calculateBusinessSize (employees, turnover) {
@@ -104,11 +96,12 @@ function getSpreadsheetDetails (submission, desirabilityScore) {
           generateRow(41, 'Owner', 'RD'),
           generateRow(341, 'Grant Launch Date', ''),
           generateRow(23, 'Status of applicant', submission.legalStatus),
+          generateRow(44, 'Adding Value Project Items', submission.projectItems ? [submission.projectItems].flat().join('| ') : ' '),
           generateRow(45, 'Location of project (postcode)', submission.projectPostcode),
           generateRow(376, 'Project Started', submission.projectStart),
           generateRow(342, 'Land owned by Farm', submission.tenancy),
           generateRow(343, 'Tenancy for next 5 years', submission.tenancyLength ?? ''),
-          generateRow(53, 'Business type', getBusinessTypeC53(submission.businessType)),
+          generateRow(53, 'Business type', getBusinessTypeC53(submission.applicantBusiness)),
           generateRow(55, 'Total project expenditure', String(submission.projectCost)),
           generateRow(57, 'Grant rate', '40'),
           generateRow(56, 'Grant amount requested', submission.calculatedGrant),
@@ -116,15 +109,13 @@ function getSpreadsheetDetails (submission, desirabilityScore) {
           generateRow(346, 'Planning Permission Status', submission.planningPermission),
           generateRow(386, 'Products To Be Processed', submission.productsProcessed ?? ''),
           generateRow(387, 'How add value to products', submission.howAddingValue ?? ''),
-          generateRow(388, 'AV Project Impact', submission.projectImpact ?? ''),
+          generateRow(388, 'AV Project Impact', submission.projectImpact ? submission.projectImpact.join('| ') : ' '),
           generateRow(389, 'AV Target Customers', submission.futureCustomers ?? ''),
           generateRow(390, 'AV Farmer Collaborate', submission.collaboration ?? ''),
           generateRow(391, 'AV Product Sourcing Location', submission.productsComingFrom ?? ''),
           generateRow(392, 'AV Product Sell Location', submission.processedSold ?? ''),
           generateRow(393, 'AV Improve Environment', submission.env ?? ''),
-          generateRow(378, 'Data Analytics', submission.dataAnalytics ?? ''),
-          generateRow(381, 'Currently using Grant Item', submission.technology ?? ''),
-          generateRow(394, 'AV Business Type', submission.businessType ?? ''),
+          generateRow(394, 'AV Business Type', submission.applicantBusiness ?? ''),
           generateRow(49, 'Site of Special Scientific Interest (SSSI)', submission.sSSI ?? ''),
           generateRow(365, 'OA score', desirabilityScore.desirability.overallRating.band),
           generateRow(366, 'Date of OA decision', ''),
@@ -216,8 +207,8 @@ function getEmailDetails (submission, desirabilityScore, rpaEmail, isAgentEmail 
       productsProcessed: submission.productsProcessed ?? ' ',
       productsProcessedScore: submission.productsProcessed ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'products-processed') : ' ',
       howAddingValue: submission.howAddingValue ?? ' ',
-      howAddingValueScore: submission.howAddingValue ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'how-adding-value') : ' ',
-      projectImpact: submission.projectImpact ?? ' ',
+      howAddingValueScore: ' ',
+      projectImpact: submission.projectImpact ? submission.projectImpact.join(', ') : ' ',
       projectImpactScore: submission.projectImpact ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'project-impact') : ' ',
       futureCustomers: submission.futureCustomers ? submission.futureCustomers.flat().join(', ') : ' ',
       futureCustomersScore: submission.futureCustomers ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'future-customers') : ' ',

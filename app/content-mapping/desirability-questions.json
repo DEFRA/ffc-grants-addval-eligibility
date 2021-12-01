@@ -4,9 +4,9 @@
     "key": "products-processed",
     "title": "What type of products are being processed?",  
     "answers": {
-      "products-processed-A1": "Arable crops",
-      "products-processed-A2": "Horticultural crops",
-      "products-processed-A3": "Dairy or meat produce",
+      "products-processed-A1": "Arable products",
+      "products-processed-A2": "Horticultural products",
+      "products-processed-A3": "Dairy or meat products",
       "products-processed-A4": "Forestry products",
       "products-processed-A5": "Fodder crops",
       "products-processed-A6": "Non-edible crops",
@@ -41,11 +41,12 @@
     "title": "Who will your customers be after the project?",
     "answers":
     {
-      "future-customers-A1": "Processors",
-      "future-customers-A2": "Wholesalers",
-      "future-customers-A3": "Retailers",
-      "future-customers-A4": "Selling direct to consumers",
-      "future-customers-A5": "No change"
+      "future-customers-A1": "Producers or growers",
+      "future-customers-A2": "Processors",
+      "future-customers-A3": "Wholesalers",
+      "future-customers-A4": "Retailers",
+      "future-customers-A5": "Selling direct to consumers",
+      "future-customers-A6": "No change"
     }}
   ],
   "collaboration": [{
@@ -62,11 +63,11 @@
     "title": "Where are the primary products coming from?",
     "answers":
     {
-      "products-coming-from-A1": "Processing point",
+      "products-coming-from-A1": "Within 1 mile",
       "products-coming-from-A2": "Within 10 miles",
       "products-coming-from-A3": "Within 50 miles",
       "products-coming-from-A4": "More than 50 miles",
-      "products-coming-from-A5": "Outside the UK"
+      "products-coming-from-A5": "From outside the UK"
     }}
   ],
   "processedSold": [{
@@ -74,7 +75,7 @@
     "title": "Where are the processed products being sold?",
     "answers":
     {
-      "processed-sold-A1": "Processing point",
+      "processed-sold-A1": "Within 1 mile",
       "processed-sold-A2": "Within 10 miles",
       "processed-sold-A3": "Within 50 miles",
       "processed-sold-A4": "More than 50 miles",
@@ -86,10 +87,10 @@
     "title": "How will the project improve the environment?",
     "answers":
     {
-      "environmental-impact-A1": "Energy efficiency",
-      "environmental-impact-A2": "Water efficiency",
-      "environmental-impact-A3": "Waste efficiency",
-      "environmental-impact-A4": "Reduce single-use plastics",
+      "environmental-impact-A1": "Renewable energy",
+      "environmental-impact-A2": "Energy efficiency",
+      "environmental-impact-A3": "Water efficiency",
+      "environmental-impact-A4": "Waste efficiency",
       "environmental-impact-A5": "Reduce harmful emissions or pollutants",
       "environmental-impact-A6": "My project will not improve the environment"
     }}

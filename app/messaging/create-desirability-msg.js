@@ -1,7 +1,7 @@
 const grantSchemeConfig = require('../config/grant-scheme')
 const { desirabilityQuestions: questionContent } = require('../content-mapping')
 const desirabilityQuestions = ['productsProcessed', 'howAddingValue', 'projectImpact',
-  'futureCustomers', 'collaboration', 'productsComingFromprocessedSold', 'environmentalImpact']
+  'futureCustomers', 'collaboration', 'productsComingFrom', 'processedSold', 'environmentalImpact']
 function getUserAnswer (answers, userInput) {
   if (answers) {
     return [userInput].flat().map(answer =>

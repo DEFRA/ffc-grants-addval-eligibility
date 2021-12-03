@@ -96,25 +96,25 @@ function getSpreadsheetDetails (submission, desirabilityScore) {
           generateRow(41, 'Owner', 'RD'),
           generateRow(341, 'Grant Launch Date', ''),
           generateRow(23, 'Status of applicant', submission.legalStatus),
-          generateRow(44, 'Adding Value Project Items', submission.projectItems ? [submission.projectItems].flat().join('| ') : ' '),
-          generateRow(45, 'Location of project (postcode)', submission.projectPostcode),
+          generateRow(44, 'Adding Value Project Items', submission.projectItems ? [submission.projectItems].flat().join('|') : ' '),
+          generateRow(45, 'Location of project (postcode)', submission.farmerDetails.projectPostcode),
           generateRow(376, 'Project Started', submission.projectStart),
           generateRow(342, 'Land owned by Farm', submission.tenancy),
-          generateRow(343, 'Tenancy for next 5 years', submission.tenancyLength ?? ''),
+          generateRow(343, 'Tenancy for next 5 years', submission.tenancyLength ?? ' '),
           generateRow(53, 'Business type', getBusinessTypeC53(submission.applicantBusiness)),
           generateRow(55, 'Total project expenditure', String(submission.projectCost)),
           generateRow(57, 'Grant rate', '40'),
           generateRow(56, 'Grant amount requested', submission.calculatedGrant),
           generateRow(345, 'Remaining Cost to Farmer', submission.remainingCost),
           generateRow(346, 'Planning Permission Status', submission.planningPermission),
-          generateRow(386, 'Products To Be Processed', submission.productsProcessed ?? ''),
-          generateRow(387, 'How add value to products', submission.howAddingValue ?? ''),
-          generateRow(388, 'AV Project Impact', submission.projectImpact ? submission.projectImpact.join('| ') : ' '),
-          generateRow(389, 'AV Target Customers', submission.futureCustomers ?? ''),
+          generateRow(386, 'Products To Be Processed', submission.productsProcessed ?? ' '),
+          generateRow(387, 'How add value to products', submission.howAddingValue ?? ' '),
+          generateRow(388, 'AV Project Impact', submission.projectImpact ? [submission.projectImpact].flat().join('|') : ' '),
+          generateRow(389, 'AV Target Customers', [submission.futureCustomers].flat().join('|') ?? ' '),
           generateRow(390, 'AV Farmer Collaborate', submission.collaboration ?? ''),
           generateRow(391, 'AV Product Sourcing Location', submission.productsComingFrom ?? ''),
           generateRow(392, 'AV Product Sell Location', submission.processedSold ?? ''),
-          generateRow(393, 'AV Improve Environment', submission.env ?? ''),
+          generateRow(393, 'AV Improve Environment', submission.environmentalImpact ?? ''),
           generateRow(394, 'AV Business Type', submission.applicantBusiness ?? ''),
           generateRow(49, 'Site of Special Scientific Interest (SSSI)', submission.sSSI ?? ''),
           generateRow(365, 'OA score', desirabilityScore.desirability.overallRating.band),
@@ -169,7 +169,7 @@ function getScoreChance (rating) {
   }
 }
 
-function getEmailDetails (submission, desirabilityScore, rpaEmail, isAgentEmail = false) {
+function getEmailDetails(submission, desirabilityScore, rpaEmail, isAgentEmail = false) {
   const email = isAgentEmail ? submission.agentsDetails.emailAddress : submission.farmerDetails.emailAddress
   return {
     notifyTemplate: emailConfig.notifyTemplate,
@@ -208,9 +208,9 @@ function getEmailDetails (submission, desirabilityScore, rpaEmail, isAgentEmail 
       productsProcessedScore: submission.productsProcessed ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'products-processed') : ' ',
       howAddingValue: submission.howAddingValue ?? ' ',
       howAddingValueScore: ' ',
-      projectImpact: submission.projectImpact ? submission.projectImpact.join(', ') : ' ',
+      projectImpact: submission.projectImpact ? [submission.projectImpact].join(', ') : ' ',
       projectImpactScore: submission.projectImpact ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'project-impact') : ' ',
-      futureCustomers: submission.futureCustomers ? submission.futureCustomers.flat().join(', ') : ' ',
+      futureCustomers: submission.futureCustomers ? [submission.futureCustomers].flat().join(', ') : ' ',
       futureCustomersScore: submission.futureCustomers ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'future-customers') : ' ',
       collaboration: submission.collaboration ?? ' ',
       collaborationScore: submission.collaboration ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'collaboration') : ' ',
@@ -218,7 +218,7 @@ function getEmailDetails (submission, desirabilityScore, rpaEmail, isAgentEmail 
       productsComingFromScore: submission.productsComingFrom ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'products-coming-from') : ' ',
       processedSold: submission.processedSold ?? ' ',
       processedSoldScore: submission.processedSold ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'processed-sold') : ' ',
-      environmentalImpact: submission.environmentalImpact ? submission.environmentalImpact.flat().join(', ') : ' ',
+      environmentalImpact: submission.environmentalImpact ? [submission.environmentalImpact].flat().join(', ') : ' ',
       environmentalImpactScore: submission.environmentalImpact ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'environmental-impact') : ' ',
       businessType: submission.applicantBusiness
     }
@@ -226,7 +226,6 @@ function getEmailDetails (submission, desirabilityScore, rpaEmail, isAgentEmail 
 }
 function spreadsheet (submission, desirabilityScore) {
   const data = getSpreadsheetDetails(submission, desirabilityScore)
-  console.log(data.worksheets[0], 'Spreadsheet Data')
   return data
 }
 

@@ -2,15 +2,14 @@
   "productsProcessed": [
     {
     "key": "products-processed",
-    "title": "What type of products are being processed?",  
+    "title": "What type of producce is being processed?",  
     "answers": {
-      "products-processed-A1": "Arable products",
-      "products-processed-A2": "Horticultural products",
-      "products-processed-A3": "Dairy or meat products",
-      "products-processed-A4": "Forestry products",
-      "products-processed-A5": "Fodder products",
-      "products-processed-A6": "Non-edible products",
-      "products-processed-A7": "Fibre products"    
+      "products-processed-A1": "Arable produce",
+      "products-processed-A2": "Horticultural produce",
+      "products-processed-A3": "Dairy or meat produce",
+      "products-processed-A5": "Fodder produce",
+      "products-processed-A6": "Non-edible produce",
+      "products-processed-A7": "Fibre produce"    
     }
   }
   ],
@@ -18,9 +17,9 @@
     "key":"how-adding-value",
     "title":"How will you add value to the products?",  
     "answers": {   
-      "how-adding-value-A1": "Slaughtering, processing or preparing primary product",
-      "how-adding-value-A2": "Grading or sorting primary product",
-      "how-adding-value-A3": "Packing primary product",
+      "how-adding-value-A1": "Creating a new product",
+      "how-adding-value-A2": "Grading or sorting primary produce",
+      "how-adding-value-A3": "Packing primary produce",
       "how-adding-value-A4": "Controlled atmosphere or dynamic controlled atmosphere storage",
       "how-adding-value-A5": "New retail facility to sell direct to consumers"
     }
@@ -58,30 +57,6 @@
       "collaboration-A2": "No"
     }}
   ],
-  "productsComingFrom": [{
-    "key": "products-coming-from",
-    "title": "Where are the primary products coming from?",
-    "answers":
-    {
-      "products-coming-from-A1": "Within 1 mile",
-      "products-coming-from-A2": "Within 10 miles",
-      "products-coming-from-A3": "Within 50 miles",
-      "products-coming-from-A4": "More than 50 miles",
-      "products-coming-from-A5": "From outside the UK"
-    }}
-  ],
-  "processedSold": [{
-    "key": "processed-sold",
-    "title": "Where are the processed products being sold?",
-    "answers":
-    {
-      "processed-sold-A1": "Within 1 mile",
-      "processed-sold-A2": "Within 10 miles",
-      "processed-sold-A3": "Within 50 miles",
-      "processed-sold-A4": "More than 50 miles",
-      "processed-sold-A5": "Outside the UK"
-    }}
-  ],
   "environmentalImpact": [{
     "key": "environmental-impact",
     "title": "How will the project improve the environment?",
@@ -91,7 +66,7 @@
       "environmental-impact-A2": "Energy efficiency",
       "environmental-impact-A3": "Water efficiency",
       "environmental-impact-A4": "Waste efficiency",
-      "environmental-impact-A5": "Remove single-use plastics",
+      "environmental-impact-A5": "Sustainable packaging measures",
       "environmental-impact-A6": "Reduce harmful emissions or pollutants",
       "environmental-impact-A7": "My project will not improve the environment"
     }}

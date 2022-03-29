@@ -2,7 +2,7 @@
   "productsProcessed": [
     {
     "key": "products-processed",
-    "title": "What type of producce is being processed?",  
+    "title": "What type of produce is being processed?",  
     "answers": {
       "products-processed-A1": "Arable produce",
       "products-processed-A2": "Horticultural produce",
@@ -15,11 +15,11 @@
   ],
   "howAddingValue": [{
     "key":"how-adding-value",
-    "title":"How will you add value to the products?",  
+    "title":"How will you add value to the produce?",  
     "answers": {   
       "how-adding-value-A1": "Creating a new product",
       "how-adding-value-A2": "Grading or sorting primary produce",
-      "how-adding-value-A3": "Packing primary produce",
+      "how-adding-value-A3": "Packing produce",
       "how-adding-value-A4": "Controlled atmosphere or dynamic controlled atmosphere storage",
       "how-adding-value-A5": "New retail facility to sell direct to consumers"
     }

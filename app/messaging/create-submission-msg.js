@@ -57,13 +57,18 @@ function generateExcelFilename (scheme, projectName, businessName, referenceNumb
 }
 function getBusinessTypeC53 (businessType) {
   switch (businessType.toLowerCase()) {
-    case 'a grower or producer of agricultural, horticultural or forestry agri-products (a primary producer)':
+    case 'A grower or producer of agricultural or horticultural produce':
       return 'Producer'
-    case 'providing processing services to a primary producer':
-      return 'Contractor'
     default:
-      return 'Producer'
+      return 'processor'
   }
+}
+
+function getProjectItems (projectItems, storage) {
+  if (storage.includes('Yes')) {
+    projectItems.push('Storage Facilities')
+  }
+  return projectItems.join('|')
 }
 function getSpreadsheetDetails (submission, desirabilityScore) {
   const today = new Date()
@@ -96,7 +101,7 @@ function getSpreadsheetDetails (submission, desirabilityScore) {
           generateRow(41, 'Owner', 'RD'),
           generateRow(341, 'Grant Launch Date', ''),
           generateRow(23, 'Status of applicant', submission.legalStatus),
-          generateRow(44, 'Adding Value Project Items', submission.projectItems ? [submission.projectItems].flat().join('|') : ''),
+          generateRow(44, 'Adding Value Project Items', submission.projectItems ? getProjectItems([submission.projectItems].flat(), submission.storage) : ''),
           generateRow(45, 'Location of project (postcode)', submission.farmerDetails.projectPostcode),
           generateRow(376, 'Project Started', submission.projectStart),
           generateRow(342, 'Land owned by Farm', submission.tenancy),
@@ -117,6 +122,7 @@ function getSpreadsheetDetails (submission, desirabilityScore) {
           generateRow(49, 'Site of Special Scientific Interest (SSSI)', submission.sSSI ?? ''),
           generateRow(365, 'OA score', desirabilityScore.desirability.overallRating.band),
           generateRow(366, 'Date of OA decision', ''),
+          generateRow(395, 'Storage Facilities', submission.storage.split(',')[0]),
           generateRow(42, 'Project name', submission.businessDetails.projectName),
           generateRow(4, 'Single business identifier (SBI)', submission.businessDetails.sbi || '000000000'), // sbi is '' if not set so use || instead of ??
           generateRow(7, 'Business name', submission.businessDetails.businessName),
@@ -180,14 +186,15 @@ function getEmailDetails(submission, desirabilityScore, rpaEmail, isAgentEmail =
       scoreChance: getScoreChance(desirabilityScore.desirability.overallRating.band),
       projectSubject: submission.projectSubject,
       legalStatus: submission.legalStatus,
-      projectPostcode: submission.projectPostcode,
-      location: submission.businessLocation,
+      projectPostcode: submission.farmerDetails.projectPostcode,
+      location: submission.inEngland,
       planningPermission: submission.planningPermission,
       projectStart: submission.projectStart,
       tenancy: submission.tenancy,
       isTenancyLength: submission.tenancyLength ? 'Yes' : 'No',
       tenancyLength: submission.tenancyLength ?? ' ',
       projectItems: submission.projectItems ? [submission.projectItems].flat().join(', ') : '',
+      storageNeeded: submission.storage,
       projectCost: getCurrencyFormat(submission.projectCost),
       potentialFunding: getCurrencyFormat(submission.calculatedGrant),
       remainingCost: getCurrencyFormat(submission.remainingCost),

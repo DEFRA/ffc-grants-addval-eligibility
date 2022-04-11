@@ -56,12 +56,7 @@ function generateExcelFilename (scheme, projectName, businessName, referenceNumb
   return `${scheme}_${projectName}_${businessName}_${referenceNumber}_${dateTime}.xlsx`
 }
 function getBusinessTypeC53 (businessType) {
-  switch (businessType.toLowerCase()) {
-    case 'A grower or producer of agricultural or horticultural produce':
-      return 'Producer'
-    default:
-      return 'processor'
-  }
+  return (businessType.includes('processing')) ? 'processor' : 'producer'
 }
 
 function getProjectItems (projectItems, storage) {
@@ -212,7 +207,6 @@ function getEmailDetails(submission, desirabilityScore, rpaEmail, isAgentEmail =
       productsProcessed: submission.productsProcessed ?? ' ',
       productsProcessedScore: submission.productsProcessed ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'products-processed') : ' ',
       howAddingValue: submission.howAddingValue ?? ' ',
-      howAddingValueScore: ' ',
       projectImpact: submission.projectImpact ? [submission.projectImpact].join(', ') : ' ',
       projectImpactScore: submission.projectImpact ? getQuestionScoreBand(desirabilityScore.desirability.questions, 'project-impact') : ' ',
       futureCustomers: submission.futureCustomers ? [submission.futureCustomers].flat().join(', ') : ' ',

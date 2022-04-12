@@ -190,7 +190,7 @@ function getEmailDetails(submission, desirabilityScore, rpaEmail, isAgentEmail =
       tenancyLength: submission.tenancyLength ?? ' ',
       projectItems: submission.projectItems ? [submission.projectItems].flat().join(', ') : '',
       storageNeeded: submission.storage,
-      projectCost: getCurrencyFormat(submission.projectCost),
+      projectCost: getCurrencyFormat(submission.projectCost.replace(/,/g, '')),
       potentialFunding: getCurrencyFormat(submission.calculatedGrant),
       remainingCost: getCurrencyFormat(submission.remainingCost),
       projectName: submission.businessDetails.projectName,
